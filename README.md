@@ -54,8 +54,7 @@ game2/
 │       └── ResultScene.js  リザルト・記録保存
 └── assets/img/
     ├── logo.png            タイトルロゴ（1024 x 1024）
-    ├── chara_1.png         宵ちゃん（200 x 200）
-    └── chara_2.png         （今は使っていない）
+    └── chara_1.png         宵ちゃん（200 x 200）
 ```
 
 ハートの画像はファイルではなく、`BootScene` でコードから描いています。
