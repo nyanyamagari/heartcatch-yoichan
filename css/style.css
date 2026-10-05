@@ -1,0 +1,82 @@
+/* =========================================================
+   HARTCATCH宵ちゃん！  -  レイアウト用スタイル
+   内部解像度 540 x 960 (9:16)
+   画面中央への配置・拡大縮小はすべてこのCSSで行う。
+   （Phaser側の Scale Mode は NONE / autoCenter なし）
+   ========================================================= */
+
+:root {
+  /* 内部解像度 */
+  --game-w: 540;
+  --game-h: 960;
+  /* 画面まわりの余白 */
+  --gutter: 12px;
+  /* 表示領域の高さ（dvh が使えるブラウザでは下で上書き） */
+  --app-h: 100vh;
+}
+
+@supports (height: 100dvh) {
+  :root { --app-h: 100dvh; }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #0d1b3e;
+  background-image:
+    radial-gradient(circle at 20% 12%, rgba(94, 145, 255, 0.35), transparent 55%),
+    radial-gradient(circle at 82% 88%, rgba(255, 170, 90, 0.25), transparent 55%);
+  color: #e8f0ff;
+  font-family: "Yu Gothic", "Hiragino Sans", "Noto Sans JP", "Meiryo", sans-serif;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  /* 長押しで遊ぶため、文字選択・長押しメニューを出さない */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* ---- 画面中央寄せ ---- */
+#game-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- 9:16 を保ったままウィンドウに収まるサイズへ ---- */
+#game {
+  /* 高さいっぱいに収まる幅 と 親幅 の小さい方 */
+  width: min(100%, calc((var(--app-h) - var(--gutter) * 2) * var(--game-w) / var(--game-h)));
+  aspect-ratio: var(--game-w) / var(--game-h);
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #9fd3ff;
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.18) inset;
+}
+
+/* ---- canvas は枠いっぱいに引き伸ばす（Phaserのインラインstyleを上書き） ---- */
+#game canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  touch-action: none;
+}

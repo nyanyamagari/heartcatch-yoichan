@@ -1,0 +1,7 @@
+# 作業用の素材データ（公開しない）
+作業/
+
+# OS が作るファイル
+Thumbs.db
+desktop.ini
+.DS_Store
